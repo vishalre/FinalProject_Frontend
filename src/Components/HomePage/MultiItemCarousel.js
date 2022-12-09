@@ -44,14 +44,14 @@ const MultiItemCarousel = () => {
       method: "GET",
       url: "https://amazon24.p.rapidapi.com/api/product",
       params: {
-        categoryID: "beauty",
+        categoryID: "aps",
         keyword: randColor,
         country: "US",
         page: "1",
       },
       headers: {
         "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
-        "X-RapidAPI-Key": "660468cb4dmsh48758281f16f078p116e74jsn5a1cddd47d4a",
+        "X-RapidAPI-Key": "c6698fb81amsh0e1431cacd90f26p1acfcajsnefa5c2eda3b1",
       },
     };
     axios

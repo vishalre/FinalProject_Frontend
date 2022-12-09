@@ -6,9 +6,12 @@ import { getProductsByNameAction } from "../Actions/AddProduct";
 import { getCatalogsAction } from "../Actions/Catalogs";
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
+
 const Search = () => {
   const [products, setProducts] = useState([]);
   const [dbproducts, setDbproducts] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [catalogs, setCatalogs] = useState([]);
   const [searchText, setSearchText] = useState();
   const { productName } = useParams();
@@ -16,49 +19,54 @@ const Search = () => {
   const productRef = useRef();
   var searchString = "";
 
-  const searchProductsByName = async () => {
-    if (productRef.current.value !== "") {
-      await getProductsByNameAction(productRef.current.value).then((data) => {
-        setDbproducts(data);
-      });
-    } else if (productName !== undefined) {
-      await getProductsByNameAction(productName).then((data) => {
-        setDbproducts(data);
-      });
-    }
-  };
+  // const searchProductsByName = async () => {
+  //   if (productRef.current.value !== "") {
+  //     await getProductsByNameAction(productRef.current.value).then((data) => {
+  //       setDbproducts(data);
+  //       setLoading(false);
+  //     });
+  //   } else if (productName !== undefined) {
+  //     await getProductsByNameAction(productName).then((data) => {
+  //       setDbproducts(data);
+  //       setLoading(false);
+  //     });
+  //   }
+  // };
 
   const fetchAllCatalogs = async () => {
     getCatalogsAction().then((data) => setCatalogs(data));
   };
 
   const searchProductsByCategory = (catalogName) => {
+    console.log(catalogName)
+    setLoading(true);
     const options = {
       method: "GET",
       url: "https://amazon24.p.rapidapi.com/api/product",
       params: {
         categoryID: "aps",
-        keyword: { catalogName },
+        keyword: catalogName,
         country: "US",
         page: "1",
       },
       headers: {
         "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
         "X-RapidAPI-Key":
-          "660468cb4dmsh48758281f16f078p116e74jsn5a1cddd47d4a",
+          "c6698fb81amsh0e1431cacd90f26p1acfcajsnefa5c2eda3b1",
       },
     };
     axios
         .request(options)
         .then(function (response) {
           setProducts(response.data.docs);
+          setLoading(false);
         })
         .catch(function (error) {});
         Navigate(`/search/${catalogName}`);
   }
 
   const searchProducts = () => {
-    searchProductsByName();
+    // searchProductsByName();
 
     if (productRef.current.value !== null && productRef.current.value !== "") {
       searchString = productRef.current.value;
@@ -66,7 +74,11 @@ const Search = () => {
       searchString = productName;
       setSearchText(productName);
     }
+    if(searchString!== "" && catalogs.indexOf(searchString)>=0){
+        searchProductsByCategory(searchString);
+    }
     if (searchString !== "") {
+      setLoading(true);
       const options = {
         method: "GET",
         url: "https://amazon24.p.rapidapi.com/api/product",
@@ -79,7 +91,7 @@ const Search = () => {
         headers: {
           "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
           "X-RapidAPI-Key":
-            "660468cb4dmsh48758281f16f078p116e74jsn5a1cddd47d4a",
+            "c6698fb81amsh0e1431cacd90f26p1acfcajsnefa5c2eda3b1",
         },
       };
 
@@ -87,6 +99,7 @@ const Search = () => {
         .request(options)
         .then(function (response) {
           setProducts(response.data.docs);
+          setLoading(false);
         })
         .catch(function (error) {});
     }
@@ -176,54 +189,6 @@ const Search = () => {
             </div>
           </div>
           <div className="accordion-item">
-            <h2 className="accordion-header" id="panelsStayOpen-headingOne">
-              <button
-                className="accordion-button wd-my-list-button"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapseOne"
-                aria-expanded="true"
-                aria-controls="panelsStayOpen-collapseOne"
-                style={{backgroundColor: "#222f3e",
-                  color: "#fff"}}
-              >
-                <strong>From the DB</strong>
-              </button>
-            </h2>
-            <div
-              id="panelsStayOpen-collapseOne"
-              className="accordion-collapse collapse show"
-              aria-labelledby="panelsStayOpen-headingOne"
-            >
-              <div className="accordion-body">
-                <ul className="list-group">
-                  {dbproducts.map((prod) => (
-                    <li
-                      className="list-group-item"
-                      style={{ backgroundColor: "rgba(137, 215, 245, 0.83)" }}
-                      key={"l" + prod._id}
-                    >
-                      <Link to={`/details_db/${prod._id}`}>
-                        <div className="row">
-                          <div className="col-2">
-                            <img
-                              src={prod.imageUrl}
-                              className="me-3"
-                              height={60}
-                              alt="Product"
-                            />
-                            {/*Heading*/}
-                          </div>
-                          <div className="col-9">{prod.name}</div>
-                        </div>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="accordion-item">
             <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
               <button
                 className="accordion-button collapsed rounded"
@@ -235,15 +200,22 @@ const Search = () => {
                 style={{backgroundColor: "#222f3e",
                   color: "#fff"}}
               >
-                <strong>From 3rd Party Api</strong>
+                <strong>List of Products:</strong>
               </button>
             </h2>
             <div
               id="panelsStayOpen-collapseTwo"
-              className="accordion-collapse collapse"
+              className="accordion-collapse"
               aria-labelledby="panelsStayOpen-headingTwo"
             >
               <div className="accordion-body">
+                {loading ? (
+                <div className="d-flex flex-column align-items-center bg-white justify-content-center">
+                  <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </div>
+                ):(
                 <ul className="list-group">
                   {products.map((product) => (
                     <li
@@ -267,6 +239,7 @@ const Search = () => {
                     </li>
                   ))}
                 </ul>
+                )}
               </div>
             </div>
           </div>
