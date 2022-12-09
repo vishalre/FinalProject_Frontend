@@ -4,7 +4,6 @@ import axios from "axios";
 import "./index.css";
 import { getProductsByNameAction } from "../Actions/AddProduct";
 import { getCatalogsAction } from "../Actions/Catalogs";
-import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 

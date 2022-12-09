@@ -6,10 +6,13 @@ import { useSelector } from "react-redux";
 import { isDealerService } from "../../Services/LoginService";
 import { AddProductAction } from "../Actions/AddProduct";
 import "./index.css";
+import Spinner from 'react-bootstrap/Spinner';
+
 
 const Details = () => {
   const [productTitle, setproductTitle] = useState([]);
   const [product, setProduct] = useState([]);
+  const [loading,setLoading] = useState(false);
   const [priceInfo, setPriceInfo] = useState([]);
   const [productAllDetails, setProductAllDetails] = useState([]);
   const [data, setData] = useState({
@@ -32,6 +35,7 @@ const Details = () => {
     AddProductAction(data);
   };
   const productDetails = () => {
+    setLoading(true);
     const options = {
       method: "GET",
       url: `https://amazon24.p.rapidapi.com/api/product/${product_id}`,
@@ -67,6 +71,7 @@ const Details = () => {
             response.data.price_information["discount_percentage"]
           ),
         });
+        setLoading(false)
       })
       .catch(function (error) {
         console.error(error);
@@ -85,7 +90,7 @@ const Details = () => {
       <div>
         <h1>{productTitle}</h1>
 
-        <div className="row">
+        {/* <div className="row">
           <div className="col">
             {login.logedIn && isDealerService() && (
               <button
@@ -98,14 +103,23 @@ const Details = () => {
               </button>
             )}
           </div>
-        </div>
+        </div> */}
 
+        
         <div className="my-3 mx-auto" style={{ textAlign: "center" }}>
+          {loading ? (
+            <div className="d-flex flex-column align-items-center bg-white justify-content-center">
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </div>
+          ):(
           <img
             src={productAllDetails.product_main_image_url}
             height={300}
             alt="All product Details"
           />
+          )}
         </div>
 
         <ul className="list-group mt-5">
