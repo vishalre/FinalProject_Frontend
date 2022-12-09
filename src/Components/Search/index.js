@@ -3,10 +3,13 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./index.css";
 import { getProductsByNameAction } from "../Actions/AddProduct";
-
+import { getCatalogsAction } from "../Actions/Catalogs";
+import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
 const Search = () => {
   const [products, setProducts] = useState([]);
   const [dbproducts, setDbproducts] = useState([]);
+  const [catalogs, setCatalogs] = useState([]);
   const [searchText, setSearchText] = useState();
   const { productName } = useParams();
   const Navigate = useNavigate();
@@ -24,6 +27,35 @@ const Search = () => {
       });
     }
   };
+
+  const fetchAllCatalogs = async () => {
+    getCatalogsAction().then((data) => setCatalogs(data));
+  };
+
+  const searchProductsByCategory = (catalogName) => {
+    const options = {
+      method: "GET",
+      url: "https://amazon24.p.rapidapi.com/api/product",
+      params: {
+        categoryID: "aps",
+        keyword: { catalogName },
+        country: "US",
+        page: "1",
+      },
+      headers: {
+        "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
+        "X-RapidAPI-Key":
+          "660468cb4dmsh48758281f16f078p116e74jsn5a1cddd47d4a",
+      },
+    };
+    axios
+        .request(options)
+        .then(function (response) {
+          setProducts(response.data.docs);
+        })
+        .catch(function (error) {});
+        Navigate(`/search/${catalogName}`);
+  }
 
   const searchProducts = () => {
     searchProductsByName();
@@ -47,7 +79,7 @@ const Search = () => {
         headers: {
           "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
           "X-RapidAPI-Key":
-            "7c3530cf95msh4a42849e06f7945p146398jsne990820a2f14",
+            "660468cb4dmsh48758281f16f078p116e74jsn5a1cddd47d4a",
         },
       };
 
@@ -63,6 +95,7 @@ const Search = () => {
 
   useEffect(() => {
     searchProducts();
+    fetchAllCatalogs();
     /* eslint-disable-next-line */
   }, []);
 
@@ -95,7 +128,53 @@ const Search = () => {
             </div>
           </div>
         </div>
+        <div>
+        </div>
         <div className="accordion" id="accordionPanelsStayOpenExample">
+        <div className="accordion-item">
+            <h2 className="accordion-header" id="panelsStayOpen-headingOne">
+              <button
+                className="accordion-button wd-my-list-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseOne"
+                aria-expanded="true"
+                aria-controls="panelsStayOpen-collapseOne"
+                style={{backgroundColor: "#222f3e",
+                  color: "#fff"}}
+              >
+                <strong>Search by Catalog</strong>
+              </button>
+            </h2>
+            <div
+              id="panelsStayOpen-collapseOne"
+              className="accordion-collapse collapse show"
+              aria-labelledby="panelsStayOpen-headingOne"
+            >
+              <div className="accordion-body">
+                {/* {catalogs.length > 0 ? (
+                  <>
+                  <ul className="list-group">
+                    { catalogs.map((cat) => {
+                      console.log(cat.catalogName);
+                      <li className="list-group-item">{cat.catalogName}</li>
+                    })}
+                    </ul>
+                  </>
+                  )
+                  : <></> 
+                   } */}
+                  {catalogs.map((cat) => (
+                    <li
+                      className="category-list"
+                      key={"l" + cat._id}
+                    >
+                    <Button variant="primary" onClick = { ()=> searchProductsByCategory(cat.catalogName)}>{cat.catalogName}</Button>
+                    </li>
+                  ))}
+              </div>
+            </div>
+          </div>
           <div className="accordion-item">
             <h2 className="accordion-header" id="panelsStayOpen-headingOne">
               <button

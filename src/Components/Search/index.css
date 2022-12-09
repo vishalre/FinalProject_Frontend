@@ -143,3 +143,8 @@ button.btn.btn-link i {
     color:#fff
 }
 
+.category-list{
+    display:inline-block; 
+    margin-right: 1em;
+}
+

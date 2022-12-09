@@ -20,6 +20,7 @@ const Dealers = () => {
     discountPercentage: 0,
     currency: "",
     vid: "",
+    
   });
   const [errors, updateErrors] = useState({});
   const [valid, setValid] = useState(false);
