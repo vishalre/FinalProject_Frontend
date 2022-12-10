@@ -76,7 +76,7 @@ const NavBar = () => {
                     className="fa-solid fa-unlock"
                     style={{ color: "#ff9900" }}
                   ></i>
-                  <span style={{color:"#fff"}}>&nbsp;Dealer</span>
+                  <span style={{color:"#fff"}}>&nbsp;Admin</span>
                 </Link>
               </li>
             )}
