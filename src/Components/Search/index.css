@@ -146,5 +146,6 @@ button.btn.btn-link i {
 .category-list{
     display:inline-block; 
     margin-right: 1em;
+    margin-bottom: 1em;
 }
 

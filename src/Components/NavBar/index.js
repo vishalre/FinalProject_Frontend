@@ -60,12 +60,12 @@ const NavBar = () => {
             )}
             {login.logedIn && !isAdminService() && isDealerService() && (
               <li className="nav-item active mx-3">
-                <Link className="nav-link wd-nav-bg-color" to="/dealer">
+                <Link className="nav-link wd-nav-bg-color" to="/seller">
                   <i
                     className="fa-solid fa-coins"
                     style={{ color: "#ff9900" }}
                   ></i>
-                  <span style={{color:"#fff"}}>&nbsp;Dealer</span>
+                  <span style={{color:"#fff"}}>&nbsp;Add Catalog</span>
                 </Link>
               </li>
             )}

@@ -70,7 +70,7 @@ function App() {
               }
             />
             <Route
-              path="/dealer"
+              path="/seller"
               exact={true}
               element={
                 <SecureDealerLogin>
