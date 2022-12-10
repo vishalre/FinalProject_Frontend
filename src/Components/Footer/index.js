@@ -42,7 +42,7 @@ const Footer = () => {
                 onClick={() => OpenContactUs(dispatch)}
                 className="nav-link p-0 text-muted"
               >
-                Conatct Us
+                Contact Us
               </Link>
             </li>
             <li className="nav-item mb-2 mx-auto">

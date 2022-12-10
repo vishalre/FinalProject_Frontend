@@ -11,7 +11,7 @@ const NavBar = () => {
     <nav className="navbar navbar-expand-sm navbar-dark wd-bg-color">
       <div className="container">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="navbar-brand mx-1 mx-md-3 mb-0 h1 wd-nav-bg-color">
+          <span className="navbar-brand mx-1 mx-md-3 mb-0 h1 wd-nav-bg-color" style={{ color: "#ff9900" }}>
             SVR
           </span>
         </Link>
@@ -35,7 +35,6 @@ const NavBar = () => {
             <li className="nav-item active mx-3">
               <Link className="wd-nav-bg-color nav-link" to="/">
                 <i className="fa-solid fa-house" style={{ color: "#ff9900" }}></i>
-                <span style={{color:"#fff"}}>&nbsp;Home</span>
               </Link>
             </li>
             <li className="nav-item active mx-3">
@@ -44,17 +43,23 @@ const NavBar = () => {
                   className="fa-solid fa-magnifying-glass"
                   style={{ color: "#ff9900" }}
                 ></i>
-                <span style={{color:"#fff"}}>&nbsp;Search</span>
               </Link>
             </li>
+            {login.logedIn && !isAdminService() && !isDealerService() && (
+                <li className="nav-item active mx-3">
+                  <Link className="nav-link wd-nav-bg-color" to="/cart">
+                    <i className="fa-solid fa-cart-shopping" title="Cart" title="Cart"  style={{ color: "#ff9900" }}></i>
+                  </Link>
+                </li>
+            )}
             {login.logedIn && (
               <li className="nav-item active mx-3">
                 <Link className="nav-link wd-nav-bg-color" to="/profile">
                   <i
                     className="fa-solid fa-user"
                     style={{ color: "#ff9900" }}
+                    title="Profile"
                   ></i>
-                  <span style={{color:"#fff"}}>&nbsp;View Profile</span>
                 </Link>
               </li>
             )}
@@ -64,8 +69,8 @@ const NavBar = () => {
                   <i
                     className="fa-solid fa-coins"
                     style={{ color: "#ff9900" }}
+                    title="Add Catalog"
                   ></i>
-                  <span style={{color:"#fff"}}>&nbsp;Add Catalog</span>
                 </Link>
               </li>
             )}
@@ -75,8 +80,8 @@ const NavBar = () => {
                   <i
                     className="fa-solid fa-unlock"
                     style={{ color: "#ff9900" }}
+
                   ></i>
-                  <span style={{color:"#fff"}}>&nbsp;Admin</span>
                 </Link>
               </li>
             )}
@@ -94,7 +99,6 @@ const NavBar = () => {
                     className="fa-solid fa-right-from-bracket"
                     style={{ color: "#ff9900" }}
                   ></i>
-                  <span style={{color:"#fff"}}>&nbsp;Logout</span>
                 </Link>
               </li>
             ) : (
@@ -108,7 +112,6 @@ const NavBar = () => {
                     className="fa-solid fa-right-to-bracket"
                     style={{ color: "#ff9900" }}
                   ></i>
-                  <strong> &nbsp;LogIn</strong>
                 </Link>
               </li>
             )}

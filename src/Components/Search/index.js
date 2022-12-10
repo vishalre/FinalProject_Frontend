@@ -130,7 +130,7 @@ const Search = () => {
             </div>
             <div className="col col-2">
               <button
-                className=" btn btn-primary rounded float-end"
+                className=" btn btn-primary rounded"
                 onClick={() => searchProducts()}
                 style={{backgroundColor: "#222f3e",
                   color: "#fff", borderColor:"#222f3e"}}
@@ -232,7 +232,10 @@ const Search = () => {
                               alt="Product"
                             />
                           </div>
-                          <div className="col-9">{product.product_title}</div>
+                          <div className="col-8">{product.product_title}</div>
+                          <div className="col-2">
+                            <button>Add to cart</button>
+                          </div>
                         </div>
                       </Link>
                     </li>

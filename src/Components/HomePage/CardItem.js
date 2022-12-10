@@ -19,7 +19,7 @@ const Card = () => {
         <div className="text-end mt-2">
           <h6 className="wd-welcome">
             {" "}
-              Welcome, {JSON.parse(localStorage.getItem("LoggedIn"))?.firstName}
+              Happy shopping, {JSON.parse(localStorage.getItem("LoggedIn"))?.firstName}
           </h6>
         </div>
       )}
