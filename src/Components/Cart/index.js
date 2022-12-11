@@ -58,6 +58,9 @@ const CartItems = () => {
                                 </button>
                             </div>
                             <div className="total-price">${x.unitPrice}</div>
+                            <div className="delete">
+                                <i className="fa-solid fa-trash-can"></i>
+                            </div>
                         </div>
                     </>
                     )

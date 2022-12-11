@@ -35,30 +35,31 @@ const Carousel = () => {
       >
         <div>
           <img
-            src="https://pbs.twimg.com/profile_banners/90662986/1632838580/1080x360"
-            style={{ width: "100%", height: "50vh" }}
+            src="https://www.warehouseanywhere.com/resources/history-future-and-trends-of-e-commerce/warehouse-anywhere-history-future-ecommerce-1.jpg"
+            style={{ width: "100%", height: "70vh" }}
             alt="Profile Banners"
           />
         </div>
 
         <div>
           <img
-            src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/cf6a8815533349.56292f17093a1.jpg"
-            style={{ width: "100%", height: "50vh" }}
+
+            src="https://www.blog.venture-care.com/wp-content/uploads/2018/11/E-Commerce-Website-Development-company-In-India.jpg"
+            style={{ width: "100%", height: "70vh" }}
             alt="Profile Banners"
           />
         </div>
         <div>
           <img
-            src="https://i0.wp.com/store.ave.com.bn/wp-content/uploads/2022/09/SEA_iPhone_14_Pro_Web_Banner_Pre-avail_1400x700_FFH-1.png?w=1400&ssl=1"
-            style={{ width: "100%", height: "50vh" }}
+            src="https://png.pngtree.com/thumb_back/fh260/background/20220522/pngtree-ecommerce-banner-planning-segmentation-selection-image_1375247.jpg"
+            style={{ width: "100%", height: "70vh" }}
             alt="Profile Banners"
           />
         </div>
         <div>
           <img
             src="https://pbs.twimg.com/profile_banners/15087766/1621257879/1080x360"
-            style={{ width: "100%", height: "50vh" }}
+            style={{ width: "100%", height: "70vh" }}
             alt="Profile Banners"
           />
         
@@ -75,24 +76,25 @@ const Carousel = () => {
       >
         <div>
           <img
-            src="https://pbs.twimg.com/profile_banners/90662986/1632838580/1080x360"
-            style={{ width: "100%", height: "50vh" }}
-            alt="Profile Banners"
+
+              src="https://png.pngtree.com/thumb_back/fh260/background/20220522/pngtree-ecommerce-banner-planning-segmentation-selection-image_1375247.jpg"
+              style={{ width: "100%", height: "70vh" }}
+              alt="Profile Banners"
           />
         </div>
 
         <div>
           <img
-            src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/cf6a8815533349.56292f17093a1.jpg"
-            style={{ width: "100%", height: "50vh" }}
-            alt="Profile Banners"
+              src="https://www.blog.venture-care.com/wp-content/uploads/2018/11/E-Commerce-Website-Development-company-In-India.jpg"
+              style={{ width: "100%", height: "70vh" }}
+              alt="Profile Banners"
           />
         </div>
         <div>
           <img
-            src="https://i0.wp.com/store.ave.com.bn/wp-content/uploads/2022/09/SEA_iPhone_14_Pro_Web_Banner_Pre-avail_1400x700_FFH-1.png?w=1400&ssl=1"
-            style={{ width: "100%", height: "50vh" }}
-            alt="Profile Banners"
+              src="https://www.warehouseanywhere.com/resources/history-future-and-trends-of-e-commerce/warehouse-anywhere-history-future-ecommerce-1.jpg"
+              style={{ width: "100%", height: "70vh" }}
+              alt="Profile Banners"
           />
           </div>
       </Slider>
