@@ -51,6 +51,7 @@ function App() {
                       </CartItems>
                   }
               ></Route>
+
             <Route
               path="/profile/:userID"
               exact={true}

@@ -42,7 +42,7 @@ const Details = () => {
       params: { country: "US" },
       headers: {
         "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
-        "X-RapidAPI-Key": "c6698fb81amsh0e1431cacd90f26p1acfcajsnefa5c2eda3b1",
+        "X-RapidAPI-Key": "cbdbc5a5dcmsh08e409e51ccb46ep10df7cjsn7beae958c0b6",
       },
     };
 

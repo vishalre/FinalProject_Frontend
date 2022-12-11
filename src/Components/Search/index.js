@@ -6,6 +6,7 @@ import { getProductsByNameAction } from "../Actions/AddProduct";
 import { getCatalogsAction } from "../Actions/Catalogs";
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
+import {AddToCart} from "../../Services/CartService";
 
 const Search = () => {
   const [products, setProducts] = useState([]);
@@ -34,6 +35,20 @@ const Search = () => {
 
   const fetchAllCatalogs = async () => {
     getCatalogsAction().then((data) => setCatalogs(data));
+  };
+
+  const addToCart = (product) => {
+    const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
+    const p = {
+      product: product.product_id,
+      productimg: product.product_main_image_url,
+      unitPrice: product.app_sale_price,
+      quantity: 1,
+      user: loginInfo._id
+    };
+
+    AddToCart(p);
+
   };
 
   const searchProductsByCategory = (catalogName) => {
@@ -234,7 +249,10 @@ const Search = () => {
                           </div>
                           <div className="col-8">{product.product_title}</div>
                           <div className="col-2">
-                            <button>Add to cart</button>
+                            <button className=" btn btn-primary rounded"
+                                    style={{backgroundColor: "#222f3e",
+                                      color: "#fff", borderColor:"#222f3e"}}
+                                    onClick ={()=> addToCart(product)}>Add to cart</button>
                           </div>
                         </div>
                       </Link>

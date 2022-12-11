@@ -78,7 +78,7 @@
 
 .image {
     margin-right: 50px;
-    height:70%;
+    height:100%;
 }
 
 Let’s add some basic style to  product name and description.
@@ -133,4 +133,13 @@ Let’s add some basic style to  product name and description.
 button:focus,
 input:focus {
     outline:0;
+}
+
+.wd-image{
+    height: 100%;
+
+}
+
+.cart-order-btn {
+    margin-bottom: 10px;
 }
