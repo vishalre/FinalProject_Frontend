@@ -22,6 +22,7 @@ import CreateReviews from "./Components/CreateReviews";
 import GetReviews from "./Components/GetReviews";
 import DetailsDB from "./Components/Search/details_db";
 import CardsLike from "./Components/CardsLike";
+import CartItems from "./Components/Cart";
 
 function App() {
   return (
@@ -41,6 +42,15 @@ function App() {
                 </LogedIn>
               }
             ></Route>
+              <Route
+                  path="/cart"
+                  exact={true}
+                  element={
+                      <CartItems>
+
+                      </CartItems>
+                  }
+              ></Route>
             <Route
               path="/profile/:userID"
               exact={true}
