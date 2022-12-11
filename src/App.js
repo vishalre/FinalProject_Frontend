@@ -23,6 +23,7 @@ import GetReviews from "./Components/GetReviews";
 import DetailsDB from "./Components/Search/details_db";
 import CardsLike from "./Components/CardsLike";
 import CartItems from "./Components/Cart";
+import Orders from "./Components/Cart/order"
 
 function App() {
   return (
@@ -51,6 +52,11 @@ function App() {
                       </CartItems>
                   }
               ></Route>
+              <Route
+                  path="/order"
+                  exact={true}
+                  element={<Orders />}
+              />
 
             <Route
               path="/profile/:userID"
@@ -167,6 +173,7 @@ function App() {
               exact={true}
               element={<Details />}
             />
+
             <Route
               path="/details_db/:product_id"
               exact={true}
