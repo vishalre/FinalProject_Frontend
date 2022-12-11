@@ -66,7 +66,7 @@ const Search = () => {
       headers: {
         "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
         "X-RapidAPI-Key":
-          "c6698fb81amsh0e1431cacd90f26p1acfcajsnefa5c2eda3b1",
+          "cbdbc5a5dcmsh08e409e51ccb46ep10df7cjsn7beae958c0b6",
       },
     };
     axios
@@ -105,7 +105,7 @@ const Search = () => {
         headers: {
           "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
           "X-RapidAPI-Key":
-            "c6698fb81amsh0e1431cacd90f26p1acfcajsnefa5c2eda3b1",
+            "cbdbc5a5dcmsh08e409e51ccb46ep10df7cjsn7beae958c0b6",
         },
       };
 
@@ -217,19 +217,27 @@ const Search = () => {
                 <strong>List of Products:</strong>
               </button>
             </h2>
+            {loading ? (
             <div
               id="panelsStayOpen-collapseTwo"
               className="accordion-collapse"
               aria-labelledby="panelsStayOpen-headingTwo"
             >
               <div className="accordion-body">
-                {loading ? (
                 <div className="d-flex flex-column align-items-center bg-white justify-content-center">
                   <Spinner animation="border" role="status">
                     <span className="visually-hidden">Loading...</span>
                   </Spinner>
                 </div>
-                ):(
+              </div>
+            </div>
+            ):(
+              <div
+              id="panelsStayOpen-collapseTwo"
+              className="accordion-collapse"
+              aria-labelledby="panelsStayOpen-headingTwo"
+            >
+              <div className="accordion-body">
                 <ul className="list-group">
                   {products.map((product) => (
                     <li
@@ -237,31 +245,34 @@ const Search = () => {
                       style={{ backgroundColor: "rgba(137, 215, 245, 0.83)" }}
                       key={"l" + product.product_id}
                     >
+                      <div className="row">
+                      <div className="col-2">
+                        <img
+                          src={product.product_main_image_url}
+                          className="me-3"
+                          height={60}
+                          alt="Product"
+                          />
+                      </div>
+                      <div className="col-8">
                       <Link to={`/details/${product.product_id}`}>
-                        <div className="row">
-                          <div className="col-2">
-                            <img
-                              src={product.product_main_image_url}
-                              className="me-3"
-                              height={60}
-                              alt="Product"
-                            />
-                          </div>
-                          <div className="col-8">{product.product_title}</div>
-                          <div className="col-2">
-                            <button className=" btn btn-primary rounded"
+                      {product.product_title}
+                      </Link>
+                      </div>
+                      <div className="col-2">
+                      <button className=" btn btn-primary rounded"
                                     style={{backgroundColor: "#222f3e",
                                       color: "#fff", borderColor:"#222f3e"}}
-                                    onClick ={()=> addToCart(product)}>Add to cart</button>
-                          </div>
-                        </div>
-                      </Link>
+                                    onClick ={()=> addToCart(product)}>Add to cart
+                      </button>
+                      </div>
+                      </div>
                     </li>
                   ))}
                 </ul>
-                )}
               </div>
             </div>
+            )}
           </div>
         </div>
       </div>

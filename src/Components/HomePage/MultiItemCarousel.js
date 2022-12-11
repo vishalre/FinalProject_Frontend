@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./multicarousel.css";
 import { Link } from "react-router-dom";
-
+import Spinner from 'react-bootstrap/Spinner';
 const PreviousBtn = (props) => {
   const { className, onClick } = props;
   return (
@@ -26,8 +26,10 @@ const NextBtn = (props) => {
 
 const MultiItemCarousel = () => {
   const [product, setProduct] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const SearchByTitle = () => {
+    setLoading(true)
     var colors = [
       "apple",
       "bat",
@@ -51,13 +53,14 @@ const MultiItemCarousel = () => {
       },
       headers: {
         "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
-        "X-RapidAPI-Key": "c6698fb81amsh0e1431cacd90f26p1acfcajsnefa5c2eda3b1",
+        "X-RapidAPI-Key": "cbdbc5a5dcmsh08e409e51ccb46ep10df7cjsn7beae958c0b6",
       },
     };
     axios
       .request(options)
       .then(function (response) {
         setProduct(response.data.docs.slice(0, 20));
+        setLoading(false)
       })
       .catch(function (error) {
         console.error(error);
@@ -141,7 +144,13 @@ const MultiItemCarousel = () => {
   return (
     <>
       <Slider {...properties}>
-        {product &&
+        {loading ? (
+          <div className="d-flex flex-column align-items-center bg-white justify-content-center">
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
+        ):(
           product.map((p) => {
             return (
               <Link
@@ -152,7 +161,8 @@ const MultiItemCarousel = () => {
                 <Card p={p} key={p.product_id} />
               </Link>
             );
-          })}
+          })
+          )}
       </Slider>
     </>
   );

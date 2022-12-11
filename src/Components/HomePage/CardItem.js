@@ -50,7 +50,7 @@ const Card = () => {
                 Best Deals
               </h4>
             </div>
-            {/* <MultiItemCarousel /> */}
+            <MultiItemCarousel />
           </div>
         </>
       ) : (
