@@ -18,7 +18,6 @@ const Dealers = () => {
   };
   const dataSubmit = (event) => {
     event.preventDefault();
-    console.log(Object.values(catalogs),data);
     if(catalogs.some(el => el.catalogName === data)){
       errors.name = "Catalog Already exists"
       setDisabled(true);
@@ -62,7 +61,7 @@ const Dealers = () => {
               value={data}
               onChange={(event) => putData(event)}
             />
-            <label htmlFor="Name">Product Name</label>
+            <label htmlFor="Name">Catalog Name</label>
             <p className="text-danger">{errors.name ? errors.name : ""}</p>
           </div>
           <div>
