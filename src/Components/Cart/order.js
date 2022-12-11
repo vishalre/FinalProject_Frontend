@@ -10,7 +10,7 @@ const Orders = () => {
     useEffect(() => {
         FindOrdersByUser().then((data) => setOrders(data));
     }, []);
-    
+
 
     return (
         <div>
