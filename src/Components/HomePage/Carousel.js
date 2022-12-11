@@ -35,30 +35,30 @@ const Carousel = () => {
       >
         <div>
           <img
-            src="https://pbs.twimg.com/profile_banners/90662986/1632838580/1080x360"
-            style={{ width: "100%", height: "50vh" }}
+            src="https://www.warehouseanywhere.com/resources/history-future-and-trends-of-e-commerce/warehouse-anywhere-history-future-ecommerce-1.jpg"
+            style={{ width: "100%", height: "70vh" }}
             alt="Profile Banners"
           />
         </div>
 
         <div>
           <img
-            src="https://pbs.twimg.com/profile_banners/377228272/1649921262/1080x360"
-            style={{ width: "100%", height: "50vh" }}
+            src="https://www.blog.venture-care.com/wp-content/uploads/2018/11/E-Commerce-Website-Development-company-In-India.jpg"
+            style={{ width: "100%", height: "70vh" }}
             alt="Profile Banners"
           />
         </div>
         <div>
           <img
-            src="https://pbs.twimg.com/profile_banners/20536157/1651091993/1080x360"
-            style={{ width: "100%", height: "50vh" }}
+            src="https://png.pngtree.com/thumb_back/fh260/background/20220522/pngtree-ecommerce-banner-planning-segmentation-selection-image_1375247.jpg"
+            style={{ width: "100%", height: "70vh" }}
             alt="Profile Banners"
           />
         </div>
         <div>
           <img
             src="https://pbs.twimg.com/profile_banners/15087766/1621257879/1080x360"
-            style={{ width: "100%", height: "50vh" }}
+            style={{ width: "100%", height: "70vh" }}
             alt="Profile Banners"
           />
         
@@ -75,24 +75,24 @@ const Carousel = () => {
       >
         <div>
           <img
-            src="https://pbs.twimg.com/profile_banners/3138727082/1650261295/1080x360"
-            style={{ width: "100%", height: "50vh" }}
-            alt="Profile Banners"
+              src="https://png.pngtree.com/thumb_back/fh260/background/20220522/pngtree-ecommerce-banner-planning-segmentation-selection-image_1375247.jpg"
+              style={{ width: "100%", height: "70vh" }}
+              alt="Profile Banners"
           />
         </div>
 
         <div>
           <img
-            src="https://pbs.twimg.com/profile_banners/74580436/1641328646/1080x360"
-            style={{ width: "100%", height: "50vh" }}
-            alt="Profile Banners"
+              src="https://www.blog.venture-care.com/wp-content/uploads/2018/11/E-Commerce-Website-Development-company-In-India.jpg"
+              style={{ width: "100%", height: "70vh" }}
+              alt="Profile Banners"
           />
         </div>
         <div>
           <img
-            src="https://pbs.twimg.com/profile_banners/297169759/1647525684/1080x360"
-            style={{ width: "100%", height: "50vh" }}
-            alt="Profile Banners"
+              src="https://www.warehouseanywhere.com/resources/history-future-and-trends-of-e-commerce/warehouse-anywhere-history-future-ecommerce-1.jpg"
+              style={{ width: "100%", height: "70vh" }}
+              alt="Profile Banners"
           />
         </div>
       </Slider>

@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "./multicarousel.css";
 import { GetLikes } from "../Actions/GetLikes";
 import { Link } from "react-router-dom";
+import {findLikesByUser} from "../Actions/Likes";
 
 const PreviousBtn = (props) => {
   const { className, onClick } = props;
@@ -27,7 +28,7 @@ const NextBtn = (props) => {
 const LogInLikes = () => {
   const [likes, setLikes] = useState([]);
   useEffect(() => {
-    GetLikes().then((data) => setLikes(data));
+      findLikesByUser().then((data) => setLikes(data));
   }, []);
   const Card = ({ p }) => {
     return (
@@ -90,6 +91,7 @@ const LogInLikes = () => {
       },
     ],
   };
+  console.log(likes);
   return (
     <>
       <Slider {...properties}>
@@ -99,9 +101,9 @@ const LogInLikes = () => {
               <Link
                 to={`/details_db/${p.product._id}`}
                 style={{ textDecoration: "none", color: "black" }}
-                key={"l" + p.product_id}
+                key={"l" + p._id}
               >
-                <Card p={p} key={p.product_id} />
+                <Card p={p} key={p._id} />
               </Link>
             );
           })}

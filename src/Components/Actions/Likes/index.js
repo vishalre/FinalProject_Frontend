@@ -2,6 +2,7 @@ import {
   AddLikeService,
   IsLikedService,
   RemoveLikeService,
+  FindLikesService
 } from "../../../Services/Likes";
 import { LikesService } from "../../../Services/LikesService";
 
@@ -24,6 +25,7 @@ export const removeLikeAction = async (pid) => {
 
 export const findAllLikes = async (dispatch) => {
   const likes = await LikesService();
+  console.log(likes)
   if (likes != null) {
     dispatch({
       type: FIND_ALL_LIKES,
@@ -31,4 +33,10 @@ export const findAllLikes = async (dispatch) => {
     });
   }
   return likes;
+};
+
+
+export const findLikesByUser = async () => {
+  const out = await FindLikesService();
+  return out;
 };

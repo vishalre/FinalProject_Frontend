@@ -237,7 +237,7 @@ const Search = () => {
                       style={{ backgroundColor: "rgba(137, 215, 245, 0.83)" }}
                       key={"l" + product.product_id}
                     >
-                      <Link to={`/details/${product.product_id}`}>
+                      <Link to={`/details/${product.product_id}`} state={{productState: product }}>
                         <div className="row">
                           <div className="col-2">
                             <img
