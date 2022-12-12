@@ -25,19 +25,21 @@ export const CreateReview = async (reviews) => {
   return data.data;
 };
 
-export const DeleteReview = async (id) => {
-  const data = await axios.post(
-    DELETE_REVIEW_URL,
-    {
-      id,
-    },
-    {
-      headers: {
-        authorization: localStorage.getItem("LoginToken"),
-      },
-    }
-  );
-  return data.data;
+export const DeleteReview = async (reviewId) => {
+    const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
+    const data = await axios.post(
+        DELETE_REVIEW_URL,
+        {
+            id: loginInfo._id,
+            rid: reviewId
+        },
+        {
+          headers: {
+            authorization: localStorage.getItem("LoginToken"),
+          },
+        }
+    );
+    return data.data;
 };
 
 export const FindReviewsService = async() => {

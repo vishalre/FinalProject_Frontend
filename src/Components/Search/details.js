@@ -48,7 +48,7 @@ const Details = () => {
       discount: Number(response.data.price_information["discount"]),
       discountPercentage: Number(response.data.price_information["discount_percentage"]),
     }
-    console.log("Product data   ",productData);
+    console.log("Product data   ",response);
     AddProductAction(productData);
   };
   const productDetails = () => {

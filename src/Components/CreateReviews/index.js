@@ -41,8 +41,11 @@ const CreateReviews = ({ productID }) => {
     }
   };
   const deleteReview = (id) => {
-    DeleteReviewsAction(id).then(() => {
-      getProductAction(productID, dispatch);
+    DeleteReviewsAction(id).then((data) => {
+      if (data.success){
+        getProductAction(productID, dispatch);
+      }
+      console.log("Vishal from delete review",data);
     });
   };
 

@@ -12,5 +12,6 @@ export const GetReviewsByUserAction = async () => {
 };
 
 export const DeleteReviewsAction = async (id) => {
-  await DeleteReview(id);
+  const data = await DeleteReview(id);
+  return data;
 };
