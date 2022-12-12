@@ -4,24 +4,29 @@ import { useParams } from "react-router-dom";
 import { UserPublicDetails } from "../Actions/GetUserPublicInformation";
 import ReviewsList from "../ReviewsList";
 const UserPublicInformation = () => {
-  const user = useSelector((state) => state.UserPublicDetails);
+  const userData = useSelector((state) => state.UserPublicDetails);
   const dispatch = useDispatch();
   const userID = useParams();
   useEffect(() => {
     UserPublicDetails(dispatch, userID.userID).catch(console.error);
   }, [dispatch, userID.userID]);
+  console.log(userData);
+
   return (
     <>
-      <div className="row mt-4" style={{ fontSize: "1.5rem" }}>
+        {userData.length > 0 ? (
+         <div>
+         <div className="row mt-4" style={{fontSize: "1.5rem"}}>
         <span>
-          Name:&nbsp;&nbsp;&nbsp;{user.firstName}&nbsp;{user.lastName}
+          Name:&nbsp;&nbsp;&nbsp;{userData[0].user.firstName}&nbsp;{userData[0].user.lastName}
         </span>
-      </div>
-      <div className="row" style={{ fontSize: "1.5rem" }}>
-        <span>User Type:&nbsp;&nbsp;{user.type}</span>
-      </div>
 
-      {user.reviews ? <ReviewsList Reviews={user.reviews}></ReviewsList> : ""}
+             <span>User Type:&nbsp;&nbsp;{userData[0].user.type}</span>
+         </div>
+         </div>
+           ) : ""}
+
+      {userData ? <ReviewsList Reviews={userData}></ReviewsList> : ""}
     </>
   );
 };
