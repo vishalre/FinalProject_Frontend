@@ -155,6 +155,7 @@ const MultiItemCarousel = () => {
             return (
               <Link
                 to={`details/${p.product_id}`}
+                state={{ productState: p }}
                 style={{ textDecoration: "none", color: "black" }}
                 key={"l" + p.product_id}
               >

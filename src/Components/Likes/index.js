@@ -9,10 +9,18 @@ import "./index.css";
 const Likes = ({ pid }) => {
   const [liked, setLikes] = useState(false);
   const addLike = (productId) => {
-    addLikeAction(productId).then((data) => setLikes(true));
+    addLikeAction(productId).then((data) => {
+      if (data.success) {
+        setLikes(true);
+      }
+    });
   };
   const removeLike = (productId) => {
-    removeLikeAction(productId).then((data) => setLikes(false));
+    removeLikeAction(productId).then((data) => {
+      if (data.success) {
+        setLikes(false);
+      }
+    });
   };
   useEffect(() => {
     isLikedAction(pid).then((data) => {

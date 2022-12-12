@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { GetLikes } from "../Actions/GetLikes";
 import LikedItem from "./LikedItem";
+import {findLikesByUser} from "../Actions/Likes";
 
 const CardsLike = () => {
   const [likes, setLikes] = useState([]);
   useEffect(() => {
-    GetLikes().then((data) => setLikes(data));
+      findLikesByUser().then((data) => setLikes(data));
   }, []);
   return (
     <>

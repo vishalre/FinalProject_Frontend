@@ -255,7 +255,8 @@ const Search = () => {
                           />
                       </div>
                       <div className="col-8">
-                      <Link to={`/details/${product.product_id}`}>
+                      <Link to={`/details/${product.product_id}`}
+                            state={{productState: product }}>>
                       {product.product_title}
                       </Link>
                       </div>

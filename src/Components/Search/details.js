@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { isDealerService } from "../../Services/LoginService";
@@ -31,17 +30,29 @@ const Details = () => {
     currency: "",
     vid: "",
   });
-  const location = useLocation()
-  const { productState } = location.state
+  const location = useLocation();
+  const { productState } = location.state;
   const product_id = productState.product_id;
   const login = useSelector((state) => state.LogIn);
 
-  const addToCart = () => {
-    AddProductAction(data);
+  const addToCart = (response) => {
+    const productData = {
+      name: productState.product_title,
+      asin: product_id,
+      imageUrl: response.data.product_main_image_url,
+      manufacturer: response.data.product_details["_Manufacturer_"],
+      originalPrice: Number(
+          response.data.price_information["original_price"]),
+      price: Number(response.data.price_information["app_sale_price"]),
+      currency: response.data.price_information["currency"],
+      discount: Number(response.data.price_information["discount"]),
+      discountPercentage: Number(response.data.price_information["discount_percentage"]),
+    }
+    console.log("Product data   ",productData);
+    AddProductAction(productData);
   };
   const productDetails = () => {
     setLoading(true);
-    console.log("Product Id " + product_id);
     const options = {
       method: "GET",
       url: `https://amazon24.p.rapidapi.com/api/product/${product_id}`,
@@ -55,6 +66,7 @@ const Details = () => {
     axios
       .request(options)
       .then(function (response) {
+        addToCart(response);
         setproductTitle(productState.product_title);
         setProduct(response.data.product_details);
         setPriceInfo(response.data.price_information);
@@ -94,10 +106,10 @@ const Details = () => {
         <h1>{productTitle}</h1>
         {login.logedIn && (
           <div className="mt-4 mx-4" style={{ fontSize: "30px" }}>
-              <div className="mx-auto" onClick={addToCart}>
+              <div className="mx-auto">
                 <Likes pid={product_id} />
               </div>
-            <p style={{ fontSize: "14px" }}>Add to wishlist</p>
+            <p style={{ fontSize: "14px" }}>Like</p>
           </div>
         )}
         <div className="my-3 mx-auto" style={{ textAlign: "center" }}>
