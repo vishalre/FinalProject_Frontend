@@ -1,9 +1,14 @@
-import { FindCart, AddToOrders, FindOrdersOfUser } from "../../../Services/CartService";
+import { FindCart, AddToOrders, FindOrdersOfUser, RemoveFromCart } from "../../../Services/CartService";
 
 export const GetCartItems = async () => {
     const items = await FindCart();
     return items;
 };
+
+export const deleteCartItem = async(id) => {
+    const items = await RemoveFromCart(id);
+    return items;
+}
 
 export const AddToOrder = async (order) => {
     console.log(order);

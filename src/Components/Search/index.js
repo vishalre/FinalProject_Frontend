@@ -7,13 +7,17 @@ import { getCatalogsAction } from "../Actions/Catalogs";
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import {AddToCart} from "../../Services/CartService";
-
+import { GetCartItems } from "../Actions/Cart";
+import { isAdminService, isDealerService } from "../../Services/LoginService";
+import { useDispatch, useSelector } from "react-redux";
 const Search = () => {
+  const login = useSelector((state) => state.LogIn);
   const [products, setProducts] = useState([]);
   const [dbproducts, setDbproducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [catalogs, setCatalogs] = useState([]);
   const [searchText, setSearchText] = useState();
+  const [cartData,setCartData] = useState([])
   const { productName } = useParams();
   const Navigate = useNavigate();
   const productRef = useRef();
@@ -46,13 +50,14 @@ const Search = () => {
       quantity: 1,
       user: loginInfo._id
     };
-
-    AddToCart(p);
-
+    AddToCart(p).then(GetCartItems().then((data) => {
+      console.log("Cart data - ", data)
+      setCartData(data)
+    })
+      );
   };
 
   const searchProductsByCategory = (catalogName) => {
-    console.log(catalogName)
     setLoading(true);
     const options = {
       method: "GET",
@@ -125,6 +130,10 @@ const Search = () => {
     fetchAllCatalogs();
     /* eslint-disable-next-line */
   }, []);
+
+  useEffect(() => {
+    GetCartItems().then((data) => setCartData(data));
+  },[])
 
   return (
     <div className="row wd-bg-image">
@@ -256,16 +265,21 @@ const Search = () => {
                       </div>
                       <div className="col-8">
                       <Link to={`/details/${product.product_id}`}
-                            state={{productState: product }}>>
+                            state={{productState: product }}>
                       {product.product_title}
                       </Link>
                       </div>
                       <div className="col-2">
-                      <button className=" btn btn-primary rounded"
-                                    style={{backgroundColor: "#222f3e",
-                                      color: "#fff", borderColor:"#222f3e"}}
-                                    onClick ={()=> addToCart(product)}>Add to cart
-                      </button>
+                      {login.logedIn && !isAdminService() && !isDealerService() &&
+                        <button className=" btn btn-primary rounded"
+                                      style={{backgroundColor: "#222f3e",
+                                        color: "#fff", borderColor:"#222f3e"}}
+                                      onClick ={()=> addToCart(product)} disabled = {cartData.some(el => el.product === product.product_id)}> 
+                                      { cartData.some(el => el.product === product.product_id) ? 
+                                      ("Added to cart") : ("Add to cart")
+                                      }
+                        </button>
+                      }
                       </div>
                       </div>
                     </li>

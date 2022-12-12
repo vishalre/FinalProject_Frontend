@@ -28,7 +28,7 @@ const Card = () => {
       </div>
       <br />
 
-      {!login.logedIn || !(likes.length > 0) ? (
+      {!login.logedIn ? (
         <>
             {/*<div className="wd-multi-item-carousel border rounded border-4 border-light">
             <div className="border border-top-0 border-end-0 border-4 border-start-0 border-light d-inline d-flex">
@@ -41,17 +41,6 @@ const Card = () => {
             </div>
             <LogOutLikes />
           </div>*/}
-          <div className="wd-multi-item-carousel border rounded border-4 border-light">
-            <div className="border border-top-0 border-end-0 border-4 border-start-0 border-light d-inline d-flex">
-              <h4
-                style={{ fontSize: "25px" }}
-                className="w-100 wd-top-offers ps-5 pt-2 pb-2"
-              >
-                Best Deals
-              </h4>
-            </div>
-            <MultiItemCarousel />
-          </div>
         </>
       ) : (
         <>
@@ -66,19 +55,19 @@ const Card = () => {
             </div>
               <LogInLikes />
           </div>
+        </>
+        )}
           <div className="wd-multi-item-carousel border rounded border-4 border-light">
             <div className="border border-top-0 border-end-0 border-4 border-start-0 border-light d-inline d-flex">
               <h4
                 style={{ fontSize: "25px" }}
                 className="w-100 wd-top-offers ps-5 pt-2 pb-2"
               >
-                Top Offers
+                Best Deals
               </h4>
             </div>
             <MultiItemCarousel />
           </div>
-        </>
-      )}
     </>
   );
 };

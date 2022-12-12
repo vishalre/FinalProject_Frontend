@@ -143,15 +143,15 @@ const MultiItemCarousel = () => {
 
   return (
     <>
-      <Slider {...properties}>
-        {loading ? (
-          <div className="d-flex flex-column align-items-center bg-white justify-content-center">
+    {loading ? (
+          <div className="d-flex align-items-center bg-white justify-content-center">
           <Spinner animation="border" role="status">
             <span className="visually-hidden">Loading...</span>
           </Spinner>
         </div>
         ):(
-          product.map((p) => {
+      <Slider {...properties}>
+          { product.map((p) => {
             return (
               <Link
                 to={`details/${p.product_id}`}
@@ -162,9 +162,9 @@ const MultiItemCarousel = () => {
                 <Card p={p} key={p.product_id} />
               </Link>
             );
-          })
-          )}
+          })}
       </Slider>
+     )}
     </>
   );
 };

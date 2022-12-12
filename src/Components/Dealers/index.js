@@ -38,6 +38,7 @@ const Dealers = () => {
     fetchAllCatalogs();
     /* eslint-disable-next-line */
   }, [errors, valid,fetchStatus]);
+  
   const validation = (value) => {
     const errors = {};
     if (!value) {
@@ -45,6 +46,7 @@ const Dealers = () => {
     }
     return errors;
   };
+
   return (
     <>
       <div className="mx-auto my-5 p-5 wd-dealer-container">

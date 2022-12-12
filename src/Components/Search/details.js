@@ -100,8 +100,13 @@ const Details = () => {
   }, []);
 
   return (
-    <div>
-      <br></br>
+    loading === true ? (
+      <div className="d-flex flex-column align-items-center bg-white justify-content-center">
+        <Spinner animation="border" role="status" style={{marginTop:"300px"}}>
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </div>
+      ):(
       <div>
         <h1>{productTitle}</h1>
         {login.logedIn && (
@@ -113,21 +118,12 @@ const Details = () => {
           </div>
         )}
         <div className="my-3 mx-auto" style={{ textAlign: "center" }}>
-          {loading ? (
-            <div className="d-flex flex-column align-items-center bg-white justify-content-center">
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-          </div>
-          ):(
           <img
             src={productAllDetails.product_main_image_url}
             height={300}
             alt="All product Details"
           />
-          ) }
         </div>
-
         <ul className="list-group mt-5">
           {Object.keys(product).map((prod) => (
             <li className="list-group-item">
@@ -164,7 +160,7 @@ const Details = () => {
           <CreateReviews productID={product_id} product={product} />
         </div>
       </div>
-    </div>
+      )
   );
 };
 

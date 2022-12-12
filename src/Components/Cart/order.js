@@ -8,7 +8,7 @@ import {Link} from "react-router-dom";
 const Orders = () => {
     const [orders, setOrders] = useState([]);
     useEffect(() => {
-        FindOrdersByUser().then((data) => setOrders(data));
+        FindOrdersByUser().then((data) => {setOrders(data); console.log(data)});
     }, []);
 
 
