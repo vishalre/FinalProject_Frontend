@@ -95,8 +95,8 @@ const LogInLikes = () => {
   return (
     <>
       <Slider {...properties}>
-        {likes.length > 0 &&
-          likes?.map((p) => {
+        {likes.length > 0 ? (
+          likes.map((p) => {
             return (
               <Link
                 to={`/details_db/${p.product._id}`}
@@ -106,7 +106,11 @@ const LogInLikes = () => {
                 <Card p={p} key={p._id} />
               </Link>
             );
-          })}
+          })):
+          (
+          <>
+          </>
+          )}
       </Slider>
     </>
   );

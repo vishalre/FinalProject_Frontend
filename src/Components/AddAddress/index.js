@@ -122,6 +122,7 @@ const AddAddress = () => {
       });
     }
   }, [errors, start, data, dispatch, navigate, valid]);
+  console.log(addresses)
   return (
     <div className="my-5">
       <ul className="list-group">

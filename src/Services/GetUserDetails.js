@@ -17,5 +17,6 @@ export const GetUserDetails=async()=>{
             },
         }
     );
+    console.log(data.data.user)
     return data.data.user;
 }

@@ -59,7 +59,7 @@ const Details = () => {
       params: { country: "US" },
       headers: {
         "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
-        "X-RapidAPI-Key": "1d237264a5mshef4b2877fab48afp163d32jsn7d458fbb81e7",
+        "X-RapidAPI-Key": "3b61e0c512msh690536547fe6d4fp15106ejsnba48c56b1d01",
       },
     };
 
@@ -95,6 +95,7 @@ const Details = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     productDetails();
     /* eslint-disable-next-line */
   }, []);
